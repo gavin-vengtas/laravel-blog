@@ -21,17 +21,23 @@ Route::get('/', function () {
     return view('posts', ['post' => Post::all()]);
 });
 
-Route::get('posts/{postname}', function ($slug) {
+// Route::get('posts/{postID}', function ($postID) {
 
-    $post = Post::find($slug);
+//     $post = Post::find($postID);
 
-    if($post){
-        return view('post', [
-            'post'=> Post::find($slug)
-        ]);
-    }else{
-        abort(404);
-    }   
+//     if($post){
+//         return view('post', [
+//             'post'=> $post
+//         ]);
+//     }else{
+//         abort(404);
+//     }   
+// });
 
-    // ddd(Post::find($slug));
-})->where('postname','[0-9A-z_\-]+');
+//cleaner
+Route::get('posts/{postID:slug}', function (Post $postID) { //Post::where('slug',$slug)->first();
+    return view('post', [
+        'post'=> $postID
+    ]);
+
+});
