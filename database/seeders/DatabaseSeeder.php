@@ -15,7 +15,19 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        // **Create N amount of posts, each with its own associated user and category**
+        //Post::factory(3)->create();
+        
+
+        // **Create post with specific field values**
+        
+        $user = User::factory()->create(['name'=>'Gavin Vengtas']);
+        Post::factory(3)->create(['user_id'=>$user->id]);        
+
+
+        // **Alternative seed option**
+        /*
         User::truncate();
         Category::truncate();
         Post::truncate();
@@ -62,6 +74,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-hobby-post',
             'excerpt' => 'Morbi sed ultrices lacus. Nullam eu arcu a arcu rutrum scelerisque bibendum eget sem. Donec aliquam est blandit metus aliquam scelerisque at eleifend orci. Nulla ultrices dignissim ex, vel consequat velit pellentesque ac. Suspendisse elementum ut tortor aliquet feugiat. Praesent in tristique arcu, sit amet fermentum est.',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod dignissim libero, eu tristique nibh tempor volutpat. Ut blandit vehicula neque, et blandit ipsum. Fusce urna nisi, venenatis eget feugiat quis, sollicitudin non ligula. Donec luctus non elit eu dictum. Morbi gravida, justo eget gravida convallis, quam arcu elementum lorem, in condimentum ligula leo vel odio. Vivamus nec pulvinar justo. Nam a tellus mauris. Curabitur non urna a mi ornare accumsan a a leo. Morbi nunc augue, porttitor sed scelerisque vel, facilisis euismod mauris. Duis accumsan nisi ac justo aliquam ultricies. In lobortis dui ligula, at feugiat orci ullamcorper vitae. In hac habitasse platea dictumst. Sed imperdiet libero ex, et luctus sem porttitor ac. '
-        ]);
+        ]);*/
     }
 }
