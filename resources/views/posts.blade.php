@@ -4,7 +4,7 @@
     @foreach ($post as $item)
     <article>
         <h2>{{$item->title;}}</h2>
-        <p><a href="">{{$item->category->name;}}</a></p>
+        <p>By <a href="">{{$item->user->name}}</a> in <a href="">{{$item->category->name;}}</a></p>
         <p>{{$item->excerpt;}}</p>
         <a href="posts/{{$item->slug;}}">Read More...</a>
     </article>
