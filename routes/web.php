@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 use PhpParser\Node\Expr\ArrowFunction;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -19,15 +21,32 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     return view('posts', [
-        'post' => Post::with('category')->with('user')->get()
+        'posts' => Post::latest()->with('category','author')->get(),
+        'url' => url('/')
     ]);
 });
 
-Route::get('posts/{postID:slug}', function (Post $postID) { //Post::where('slug',$slug)->first();
+Route::get('posts/{post:slug}', function (Post $post) { //Post::where('slug',$slug)->first();
     return view('post', [
-        'post'=> $postID
+        'post'=> $post,
+        'url' => url('/')
     ]);
 
+});
+
+Route::get('author/{user}', function (User $user){
+    return view('posts', [
+        'posts'=> $user->posts,
+        'url' => url('/')
+    ]);
+});
+
+Route::get('category/{category}', function ($category){
+    $post = Post::where('category_id', $category)->get();
+    return view('posts', [
+        'posts'=> $post,
+        'url' => url('/')
+    ]);
 });
 
 //Alternative
