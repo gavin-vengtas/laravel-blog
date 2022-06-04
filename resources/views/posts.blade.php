@@ -1,12 +1,14 @@
 @extends('layout')
 
 @section('content')
-    @foreach ($post as $item)
+    @foreach ($posts as $post)
     <article>
-        <h2>{{$item->title;}}</h2>
-        <p>By <a href="">{{$item->user->name}}</a> in <a href="">{{$item->category->name;}}</a></p>
-        <p>{{$item->excerpt;}}</p>
-        <a href="posts/{{$item->slug;}}">Read More...</a>
+        <h2>{{$post->title;}}</h2>
+        <p>
+            By <a href="{{$url}}/author/{{$post->author->id;}}">{{$post->author->name;}}</a> in <a href="{{$url}}/category/{{$post->category->id;}}">{{$post->category->name;}}</a>
+        </p>
+        <p>{{$post->excerpt;}}</p>
+        <a href="{{$url}}/posts/{{$post->slug;}}">Read More...</a>
     </article>
     @endforeach
 @endsection

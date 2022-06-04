@@ -3,9 +3,9 @@
 @section('content')
     <article>
         <h2>{{ $post->title; }}</h2>
-        <p>By <a href="">{{$post->user->name;}}</a> in <a href="/categories">{{$post->category->name;}}</a></p>
+        <p>By <a href="{{$url}}/author/{{$post->author->id}}">{{$post->author->name;}}</a> in <a href="{{$url}}/categories/{{$post->category->id;}}">{{$post->category->name;}}</a></p>
         <p>{{ $post->body; }}</p>
-        <a href="/">Go Back</a>
+        <a href="{{$url}}/">Go Back</a>
     </article>
 
     <script src="" async defer></script>
