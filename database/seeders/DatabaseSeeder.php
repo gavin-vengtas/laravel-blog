@@ -16,17 +16,77 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {   
+        //Active Seed
+        $user1 = User::factory()->create(['name'=>'Gavin Vengtas']);
+        $user2 = User::factory()->create(['name'=>'John Doe']);
+        $user3 = User::factory()->create(['name'=>'Larry David']);
+
+        $cat1 = Category::factory()->create(['name'=>'Work']);
+        $cat2 = Category::factory()->create(['name'=>'Hobbies']);
+        $cat3 = Category::factory()->create(['name'=>'Lifestyle']);
+
+        //Create Posts for User 1
+        Post::factory(3)->create([
+            'user_id'=>$user1->id,
+            'category_id' => $cat1->id
+        ]); 
+
+        Post::factory(2)->create([
+            'user_id'=>$user1->id,
+            'category_id' => $cat2->id
+        ]); 
+
+        Post::factory(2)->create([
+            'user_id'=>$user1->id,
+            'category_id' => $cat3->id
+        ]); 
+
+        //Create Posts for User 2
+        Post::factory(3)->create([
+            'user_id'=>$user2->id,
+            'category_id' => $cat1->id
+        ]); 
+
+        Post::factory(2)->create([
+            'user_id'=>$user2->id,
+            'category_id' => $cat2->id
+        ]); 
+
+        Post::factory(2)->create([
+            'user_id'=>$user2->id,
+            'category_id' => $cat3->id
+        ]); 
+
+        //Create Posts for User 3
+        Post::factory(3)->create([
+            'user_id'=>$user3->id,
+            'category_id' => $cat1->id
+        ]); 
+
+        Post::factory(2)->create([
+            'user_id'=>$user3->id,
+            'category_id' => $cat2->id
+        ]); 
+
+        Post::factory(2)->create([
+            'user_id'=>$user3->id,
+            'category_id' => $cat3->id
+        ]); 
+
+        //*********************Seed Templates*********************/
+        //
         // **Create N amount of posts, each with its own associated user and category**
         //Post::factory(3)->create();
         
 
         // **Create post with specific field values**
-        
+        /*
         $user = User::factory()->create(['name'=>'Gavin Vengtas']);
-        Post::factory(3)->create(['user_id'=>$user->id]);        
+        Post::factory(3)->create(['user_id'=>$user->id]);       
+        */ 
 
 
-        // **Alternative seed option**
+        // **Alternative seed options**
         /*
         User::truncate();
         Category::truncate();
