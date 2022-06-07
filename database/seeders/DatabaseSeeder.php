@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         $user2 = User::factory()->create(['name'=>'John Doe']);
         $user3 = User::factory()->create(['name'=>'Larry David']);
 
-        $cat1 = Category::factory()->create(['name'=>'Work']);
-        $cat2 = Category::factory()->create(['name'=>'Hobbies']);
-        $cat3 = Category::factory()->create(['name'=>'Lifestyle']);
+        $cat1 = Category::factory()->create(['name'=>'Work','slug'=>'work']);
+        $cat2 = Category::factory()->create(['name'=>'Hobbies','slug'=>'hobbies']);
+        $cat3 = Category::factory()->create(['name'=>'Lifestyle','slug'=>'lifestyle']);
 
         //Create Posts for User 1
         Post::factory(3)->create([
