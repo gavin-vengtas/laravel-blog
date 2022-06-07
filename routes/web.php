@@ -42,7 +42,7 @@ Route::get('author/{user}', function (User $user){
 });
 
 Route::get('category/{category}', function ($category){
-    $post = Post::where('category_id', $category)->get();
+    $post = Post::latest()->where('category_id', $category)->with('category','author')->get();
     return view('posts', [
         'posts'=> $post,
         'url' => url('/')
