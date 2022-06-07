@@ -21,12 +21,12 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     return view('posts', [
-        'posts' => Post::latest()->with('category','author')->get(),
+        'posts' => Post::latest()->get(),
         'url' => url('/')
     ]);
 });
 
-Route::get('posts/{post:slug}', function (Post $post) { //Post::where('slug',$slug)->first();
+Route::get('post/{post:slug}', function (Post $post) { //Post::where('slug',$slug)->first();
     return view('post', [
         'post'=> $post,
         'url' => url('/')
@@ -34,17 +34,18 @@ Route::get('posts/{post:slug}', function (Post $post) { //Post::where('slug',$sl
 
 });
 
-Route::get('author/{user}', function (User $user){
+Route::get('author/{author:username}', function (User $author){
     return view('posts', [
-        'posts'=> $user->posts,
+        'posts'=> $author->posts->sortByDesc('created_at'),
         'url' => url('/')
     ]);
 });
 
-Route::get('category/{category}', function ($category){
-    $post = Post::latest()->where('category_id', $category)->with('category','author')->get();
+Route::get('category/{category:slug}', function (Category $category){
+    //$post = Post::latest()->where('category_id', $category)->with('category','author')->get();
+    
     return view('posts', [
-        'posts'=> $post,
+        'posts'=> $category->posts->sortByDesc('created_at'),
         'url' => url('/')
     ]);
 });
