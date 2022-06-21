@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -19,30 +20,9 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [PostController::class, 'index'])->name('home');
 
-    $posts = Post::latest(); //Post::latest()->get()
-
-    if (request('search')) {
-        $posts->where('title', 'like', '%'.request('search').'%')
-        ->orWhere('body', 'like', '%'.request('search').'%');
-    }
-    
-    return view('posts', [
-        'posts' => $posts->get(),
-        'categories' => Category::all()->sortBy('name', SORT_STRING),
-        'url' => url('/')
-    ]);
-})->name('home');
-
-Route::get('post/{post:slug}', function (Post $post) { //Post::where('slug',$slug)->first();
-    return view('post', [
-        'post'=> $post,
-        'categories' => Category::all()->sortBy('name', SORT_STRING),
-        'url' => url('/')
-    ]);
-
-});
+Route::get('post/{post:slug}', [PostController::class, 'show']);
 
 Route::get('author/{author:username}', function (User $author){
     return view('posts', [
