@@ -20,15 +20,25 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
+
+    $posts = Post::latest(); //Post::latest()->get()
+
+    if (request('search')) {
+        $posts->where('title', 'like', '%'.request('search').'%')
+        ->orWhere('body', 'like', '%'.request('search').'%');
+    }
+    
     return view('posts', [
-        'posts' => Post::latest()->get(),
+        'posts' => $posts->get(),
+        'categories' => Category::all()->sortBy('name', SORT_STRING),
         'url' => url('/')
     ]);
-});
+})->name('home');
 
 Route::get('post/{post:slug}', function (Post $post) { //Post::where('slug',$slug)->first();
     return view('post', [
         'post'=> $post,
+        'categories' => Category::all()->sortBy('name', SORT_STRING),
         'url' => url('/')
     ]);
 
@@ -37,6 +47,7 @@ Route::get('post/{post:slug}', function (Post $post) { //Post::where('slug',$slu
 Route::get('author/{author:username}', function (User $author){
     return view('posts', [
         'posts'=> $author->posts->sortByDesc('created_at'),
+        'categories' => Category::all()->sortBy('name', SORT_STRING),
         'url' => url('/')
     ]);
 });
@@ -46,9 +57,11 @@ Route::get('category/{category:slug}', function (Category $category){
     
     return view('posts', [
         'posts'=> $category->posts->sortByDesc('created_at'),
+        'categories' => Category::all()->sortBy('name', SORT_STRING),
+        'currentCategory'=> $category,
         'url' => url('/')
     ]);
-});
+})->name('category');
 
 //Alternative
 /*

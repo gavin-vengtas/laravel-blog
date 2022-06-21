@@ -1,4 +1,5 @@
 @props(['posts'])
+
 <x-post-feature :post="$posts[0]"/>
 
 <div class="lg:grid lg:grid-cols-6">
