@@ -1,3 +1,10 @@
+<style type="text/css">
+    input:focus::placeholder {
+  color: transparent;
+}
+</style>
+    
+
 <header class="max-w-xl mx-auto mt-20 text-center">
     <h1 class="text-4xl">
         Latest <span class="text-blue-500">Laravel From Scratch</span> News
@@ -43,7 +50,7 @@
 
         <!-- Search -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
-            <form method="GET" action="/">
+            <form method="GET" action="/" class="w-full text-left overflow-hidden">
                 @if (request('category'))
                     <input type="hidden" name="category" value="{{request('category')}}">
                 @endif
@@ -52,8 +59,9 @@
                 @endif
                 <input  type="text" 
                         name="search" 
+                        id="search"
                         placeholder="Find something"
-                        class="bg-transparent placeholder-black font-semibold text-sm"
+                        class="outline-none w-11/12 bg-transparent placeholder-black font-semibold text-sm"
                         value="{{ request('search') }}">
             </form>
         </div>
