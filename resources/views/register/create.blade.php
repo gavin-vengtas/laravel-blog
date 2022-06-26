@@ -16,51 +16,68 @@
                 </label>
                 <input 
                     type="text" 
-                    class="border border-gray-400 p-2 w-full mb-5 rounded-lg"
+                    class="border border-gray-400 p-2 w-full mb-2 rounded-lg"
                     name="name"
                     id="name"
+                    value="{{old('name')}}"
                     required>
-                
+
+                @error('name')
+                    <p class="text-red-500 text-xs mb-1">{{$message}}</p>
+                @enderror
+
                 <label 
                     for="username" 
-                    class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                    class="block mb-2 uppercase font-bold text-xs text-gray-700 mt-3"
                 >
                     Username
                 </label>
                 <input 
                     type="text" 
-                    class="border border-gray-400 p-2 w-full mb-5 rounded-lg"
+                    class="border border-gray-400 p-2 w-full mb-2 rounded-lg"
                     name="username"
                     id="username"
+                    value="{{old('username')}}"
                     required>
+
+                @error('username')
+                    <p class="text-red-500 text-xs mb-1">{{$message}}</p>
+                @enderror
 
                 <label 
                     for="email" 
-                    class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                    class="block mb-2 uppercase font-bold text-xs text-gray-700 mt-3"
                 >
                     Email Address
                 </label>
                 <input 
                     type="email" 
-                    class="border border-gray-400 p-2 w-full mb-5 rounded-lg"
+                    class="border border-gray-400 p-2 w-full mb-2 rounded-lg"
                     name="email"
                     id="email"
+                    value="{{old('email')}}"
                     required>
+
+                @error('email')
+                    <p class="text-red-500 text-xs mb-1">{{$message}}</p>
+                @enderror
 
                 <label 
                     for="password" 
-                    class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                    class="block mb-2 uppercase font-bold text-xs text-gray-700 mt-3"
                 >
                         Password
                 </label>
                 <input 
                     type="password" 
-                    class="border border-gray-400 p-2 w-full mb-5 rounded-lg"
+                    class="border border-gray-400 p-2 w-full mb-2 rounded-lg"
                     name="password"
                     id="password"
                     required
                 >
-
+                @error('password')
+                    <p class="text-red-500 text-xs mb-1">{{$message}}</p>
+                @enderror
             </div>
 
             <div class="mb-6">
