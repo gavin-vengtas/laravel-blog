@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -21,10 +22,10 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+
         return view('posts.show', [
             'post'=> $post,
-            'categories' => Category::all()->sortBy('name', SORT_STRING),
-            'url' => url('/')
+            'url' => url('/'),
         ]);
     }
 

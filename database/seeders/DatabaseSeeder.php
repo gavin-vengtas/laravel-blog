@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Comment;
 use \App\Models\User;
 use \App\Models\Post;
 use Illuminate\Database\Seeder;
@@ -72,6 +73,55 @@ class DatabaseSeeder extends Seeder
             'user_id'=>$user3->id,
             'category_id' => $cat3->id
         ]); 
+
+        //Create comments for first 3 posts
+        //post 1
+        Comment::factory()->create([
+            'post_id'=>1,
+            'user_id'=>$user3->id
+        ]);
+
+        Comment::factory()->create([
+            'post_id'=>1,
+            'user_id'=>$user1->id
+        ]);
+
+        Comment::factory()->create([
+            'post_id'=>1,
+            'user_id'=>$user2->id
+        ]);
+
+        //post 2
+        Comment::factory()->create([
+            'post_id'=>2,
+            'user_id'=>$user1->id
+        ]);
+
+        Comment::factory()->create([
+            'post_id'=>2,
+            'user_id'=>$user2->id
+        ]);
+
+        Comment::factory()->create([
+            'post_id'=>2,
+            'user_id'=>$user3->id
+        ]);
+
+        //post 2
+        Comment::factory()->create([
+            'post_id'=>3,
+            'user_id'=>$user2->id
+        ]);
+
+        Comment::factory()->create([
+            'post_id'=>3,
+            'user_id'=>$user3->id
+        ]);
+
+        Comment::factory()->create([
+            'post_id'=>3,
+            'user_id'=>$user1->id
+        ]);
 
         //*********************Seed Templates*********************/
         //

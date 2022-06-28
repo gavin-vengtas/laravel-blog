@@ -1,6 +1,11 @@
 @extends('components/layout')
 
 @section('content')
+<style type="text/css">
+    textarea:focus::placeholder {
+  color: transparent;
+}
+</style>
 
 <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
     <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
@@ -49,7 +54,19 @@
             <div class="space-y-4 lg:text-lg leading-loose">
                 <p>{!! $post->body; !!}</p>
             </div>
+
         </div>
+
+        {{-- comment section --}}
+        <section class="col-span-10 col-start-2 p-6 space-y-6 ">
+
+            @include('posts._add-comment-form')
+
+            @foreach ($post->comments as $comment)                
+                <x-post-comment :comment="$comment"/>
+            @endforeach
+            
+        </section>
     </article>
 </main>
 
